@@ -61,7 +61,10 @@ RSpec.describe "Forecast API" do
 
   context 'extended forecast section' do
     it "returns extended forecast from given city" do
+      get '/api/v1/forecast?location=denver,co'
 
+      extended_forecast = JSON.parse(response.body, symbolize_names: true)[:data][:attributes][:city_weather][:extended_forecast]
+      
     end
   end
 end

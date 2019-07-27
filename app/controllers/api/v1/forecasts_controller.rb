@@ -4,8 +4,8 @@ class Api::V1::ForecastsController < ApplicationController
       location = params[:location]
       city_weather = city_weather(location)
       render json: city_weather
-    rescue NoMethodError
-      raise ActionController::RoutingError.new('City is Invalid')
+    rescue
+      render :file => 'public/404.html', :status => :not_found, :layout => false
     end
   end
 
