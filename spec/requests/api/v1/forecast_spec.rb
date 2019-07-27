@@ -6,7 +6,7 @@ RSpec.describe "Forecast API" do
     it "returns main city info from given city" do
       get '/api/v1/forecast?location=denver,co'
 
-      main_data = JSON.parse(response.body, symbolize_names: true)[:data][:attributes][:weather_for_city][:main]
+      main_data = JSON.parse(response.body, symbolize_names: true)[:data][:attributes][:city_weather][:main]
 
       expect(main_data).to have_key(:city)
       expect(main_data[:city]).to eq('denver, co')

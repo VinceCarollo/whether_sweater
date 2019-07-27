@@ -1,9 +1,9 @@
 class Forecast
-  attr_accessor :weather_for_city, :id
+  attr_accessor :city_weather, :id
   def initialize(data, location)
     @data = data
     @location = location
-    @weather_for_city = {}
+    @city_weather = {}
     @id = 1
   end
 
@@ -17,7 +17,7 @@ class Forecast
     date = Time.at(@data[:currently][:time]).month.to_s + '/' + Time.at(@data[:currently][:time]).day.to_s
     icon = @data[:currently][:icon]
     city = @location.insert(-3, ' ')
-    @weather_for_city[:main] = {
+    @city_weather[:main] = {
       city: city,
       summary: summary,
       temperature: temperature,
