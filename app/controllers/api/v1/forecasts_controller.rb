@@ -5,7 +5,7 @@ class Api::V1::ForecastsController < ApplicationController
       city_weather = city_weather(location)
       render json: city_weather
     rescue
-      render :file => 'public/404.html', :status => :not_found, :layout => false
+      render_four_oh_four
     end
   end
 

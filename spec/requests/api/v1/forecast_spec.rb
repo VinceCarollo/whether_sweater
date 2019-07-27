@@ -6,6 +6,8 @@ RSpec.describe "Forecast API" do
     it "returns main city info from given city" do
       get '/api/v1/forecast?location=denver,co'
 
+      expect(response).to be_successful
+
       main = JSON.parse(response.body, symbolize_names: true)[:data][:attributes][:city_weather][:main]
 
       expect(main).to have_key(:city)
@@ -23,6 +25,8 @@ RSpec.describe "Forecast API" do
     it "returns main city info from different given city" do
       get '/api/v1/forecast?location=kansas city,mo'
 
+      expect(response).to be_successful
+
       main = JSON.parse(response.body, symbolize_names: true)[:data][:attributes][:city_weather][:main]
 
       expect(main).to have_key(:city)
@@ -38,13 +42,18 @@ RSpec.describe "Forecast API" do
     end
 
     it "returns 404 if invalid city" do
-      expect{ get '/api/v1/forecast?location=invalid' }.to raise_error(ActionController::RoutingError)
+      get '/api/v1/forecast?location=invalid'
+
+      expect(response).to_not be_successful
+      expect(status).to eq(404)
     end
   end
 
   context 'details section' do
     it "returns details from given city" do
       get '/api/v1/forecast?location=denver,co'
+
+      expect(response).to be_successful
 
       details = JSON.parse(response.body, symbolize_names: true)[:data][:attributes][:city_weather][:details]
 
@@ -63,8 +72,10 @@ RSpec.describe "Forecast API" do
     it "returns extended forecast from given city" do
       get '/api/v1/forecast?location=denver,co'
 
+      expect(response).to be_successful
+
       extended_forecast = JSON.parse(response.body, symbolize_names: true)[:data][:attributes][:city_weather][:extended_forecast]
-      
+
     end
   end
 end
