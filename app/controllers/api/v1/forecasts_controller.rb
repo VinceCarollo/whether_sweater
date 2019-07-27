@@ -10,7 +10,9 @@ class Api::V1::ForecastsController < ApplicationController
     lng = location_data[:results].first[:geometry][:location][:lng]
     response = Faraday.get("https://api.darksky.net/forecast/#{ENV['DARKSKY_API_KEY']}/#{lat},#{lng}")
     forecast_data = JSON.parse(response.body, symbolize_names: true)
-    main_data = Main.new(forecast_data, location)
-    render json: 
+    forecast = Forecast.new(forecast_data, location)
+    forecast.add_main_data
+    weather_for_city = ForecastSerializer.new(forecast).serializable_hash
+    render json: weather_for_city
   end
 end
