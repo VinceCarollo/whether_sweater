@@ -20,8 +20,7 @@ RSpec.describe "Forecast API" do
     end
 
     it "returns 404 if invalid city" do
-      get '/api/v1/forecast?location=invalid'
-      binding.pry
+      expect{ get '/api/v1/forecast?location=invalid' }.to raise_error(ActionController::RoutingError)
     end
   end
 end
