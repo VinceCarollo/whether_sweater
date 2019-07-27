@@ -7,6 +7,11 @@ class Forecast
     @id = 1
   end
 
+  def add_data
+    add_main_data
+    add_details
+  end
+
   def add_main_data
     summary = @data[:currently][:summary]
     temperature = @data[:currently][:temperature].round
