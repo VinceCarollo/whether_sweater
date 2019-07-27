@@ -7,7 +7,6 @@ RSpec.describe "Forecast API" do
       get '/api/v1/forecast?location=denver,co'
 
       main_data = JSON.parse(response.body, symbolize_names: true)[:data][:attributes][:city_weather][:main]
-
       expect(main_data).to have_key(:city)
       expect(main_data[:city]).to eq('denver, co')
       expect(main_data).to have_key(:summary)
@@ -18,6 +17,11 @@ RSpec.describe "Forecast API" do
       expect(main_data).to have_key(:time)
       expect(main_data).to have_key(:date)
       expect(main_data).to have_key(:icon)
+    end
+
+    it "returns 404 if invalid city" do
+      get '/api/v1/forecast?location=invalid'
+      binding.pry
     end
   end
 end
