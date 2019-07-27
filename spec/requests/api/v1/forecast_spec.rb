@@ -44,7 +44,6 @@ RSpec.describe "Forecast API" do
     it "returns 404 if invalid city" do
       get '/api/v1/forecast?location=invalid'
 
-      expect(response).to_not be_successful
       expect(status).to eq(404)
     end
   end
@@ -76,6 +75,18 @@ RSpec.describe "Forecast API" do
 
       extended_forecast = JSON.parse(response.body, symbolize_names: true)[:data][:attributes][:city_weather][:extended_forecast]
 
+      expect(extended_forecast[:hourly].length).to eq(8)
+      expect(extended_forecast[:daily].length).to eq(5)
+
+      expect(extended_forecast[:hourly].first).to have_key(:time)
+      expect(extended_forecast[:hourly].first).to have_key(:temperature)
+
+      expect(extended_forecast[:daily].first).to have_key(:week_day)
+      expect(extended_forecast[:daily].first).to have_key(:summary)
+      expect(extended_forecast[:daily].first).to have_key(:icon)
+      expect(extended_forecast[:daily].first).to have_key(:humidity)
+      expect(extended_forecast[:daily].first).to have_key(:high)
+      expect(extended_forecast[:daily].first).to have_key(:low)
     end
   end
 end
