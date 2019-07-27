@@ -29,4 +29,25 @@ class Forecast
       icon: icon
     }
   end
+
+  def add_details
+    summary = @data[:currently][:summary]
+    icon = @data[:currently][:icon]
+    today = @data[:hourly][:summary]
+    tonight = @data[:hourly][:data].last[:summary]
+    feels_like = @data[:currently][:apparentTemperature].round
+    humidity = (@data[:currently][:humidity] * 100).round
+    visibility = @data[:currently][:visibility]
+    uv_index = @data[:currently][:uvIndex]
+    @city_weather[:details] = {
+      summary: summary,
+      icon: icon,
+      today: today,
+      tonight: tonight,
+      feels_like: feels_like,
+      humidity: humidity,
+      visibility: visibility,
+      uv_index: uv_index
+    }
+  end
 end

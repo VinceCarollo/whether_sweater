@@ -15,6 +15,7 @@ class Api::V1::ForecastsController < ApplicationController
     forecast_data = WeatherService.forecast_data(location)
     forecast = Forecast.new(forecast_data, location)
     forecast.add_main_data
+    forecast.add_details
     ForecastSerializer.new(forecast).serializable_hash
   end
 end
