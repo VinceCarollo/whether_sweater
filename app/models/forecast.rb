@@ -21,9 +21,9 @@ class Forecast
     time = Time.at(@data[:currently][:time]).strftime("%I:%M %p")
     date = Time.at(@data[:currently][:time]).month.to_s + '/' + Time.at(@data[:currently][:time]).day.to_s
     icon = @data[:currently][:icon]
-    city = @location.insert(-3, ' ')
+    location = @location.insert(-3, ' ')
     @city_weather[:main] = {
-      city: city,
+      location: location,
       summary: summary,
       temperature: temperature,
       high: high,
@@ -39,7 +39,7 @@ class Forecast
     summary = @data[:currently][:summary]
     icon = @data[:currently][:icon]
     today = @data[:hourly][:summary]
-    tonight = @data[:hourly][:data].last[:summary]
+    tonight = @data[:hourly][:data][9][:summary]
     feels_like = @data[:currently][:apparentTemperature].round
     humidity = (@data[:currently][:humidity] * 100).round
     visibility = @data[:currently][:visibility]

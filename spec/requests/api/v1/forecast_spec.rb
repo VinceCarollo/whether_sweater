@@ -10,8 +10,8 @@ RSpec.describe "Forecast API" do
 
       main = JSON.parse(response.body, symbolize_names: true)[:data][:main]
 
-      expect(main).to have_key(:city)
-      expect(main[:city]).to eq('denver, co')
+      expect(main).to have_key(:location)
+      expect(main[:location]).to eq('denver, co')
       expect(main).to have_key(:summary)
       expect(main).to have_key(:temperature)
       expect(main).to have_key(:high)
@@ -29,8 +29,8 @@ RSpec.describe "Forecast API" do
 
       main = JSON.parse(response.body, symbolize_names: true)[:data][:main]
 
-      expect(main).to have_key(:city)
-      expect(main[:city]).to eq('kansas city, mo')
+      expect(main).to have_key(:location)
+      expect(main[:location]).to eq('kansas city, mo')
       expect(main).to have_key(:summary)
       expect(main).to have_key(:temperature)
       expect(main).to have_key(:high)
