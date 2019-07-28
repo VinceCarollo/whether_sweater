@@ -21,9 +21,9 @@ class Forecast
     time = Time.at(@data[:currently][:time]).strftime("%I:%M %p")
     date = Time.at(@data[:currently][:time]).month.to_s + '/' + Time.at(@data[:currently][:time]).day.to_s
     icon = @data[:currently][:icon]
-    city = @location.insert(-3, ' ')
+    location = @location.insert(-3, ' ')
     @city_weather[:main] = {
-      city: city,
+      location: location,
       summary: summary,
       temperature: temperature,
       high: high,
