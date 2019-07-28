@@ -1,9 +1,14 @@
 class Api::V1::BackgroundsController < ApplicationController
   def index
-    city = params[:location].split(',').first
-    images_data = ImageService.backgrounds(city)
-    images = create_images(images_data)
-    render_images(images)
+    location = params[:location]
+    if location
+      city = location.split(',').first
+      images_data = ImageService.backgrounds(city)
+      images = create_images(images_data)
+      render_images(images)
+    else
+      render_not_found
+    end
   end
 
   private
