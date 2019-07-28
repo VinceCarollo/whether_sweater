@@ -17,9 +17,9 @@ RSpec.describe 'Users API' do
 
     expect(user.email).to eq(user['email'])
 
-    status = JSON.parse(response.body, symbolize_names: true)
+    user_status = JSON.parse(response.body, symbolize_names: true)
 
-    expect(status).to have_key(:api_key)
+    expect(user_status[:body]).to have_key(:api_key)
   end
 
 end
