@@ -71,7 +71,7 @@ class Forecast
         week_day: Time.at(day[:time]).strftime("%A"),
         summary: day[:summary],
         icon: day[:icon],
-        humidity: (day[:humidity] * 100).round,
+        precip: (day[:precipProbability] * 100).round,
         high: day[:temperatureHigh].round,
         low: day[:temperatureLow].round
       }
