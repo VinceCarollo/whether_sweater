@@ -1,10 +1,9 @@
 class Forecast
-  attr_accessor :city_weather, :id
+  attr_reader :city_weather
   def initialize(data, location)
     @data = data
     @location = location
     @city_weather = {}
-    @id = 1
   end
 
   def add_data

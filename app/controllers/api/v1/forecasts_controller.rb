@@ -3,9 +3,9 @@ class Api::V1::ForecastsController < ApplicationController
     begin
       location = params[:location]
       city_weather = city_weather(location)
-      render json: city_weather
+      render json: { data: city_weather }
     rescue NoMethodError
-      render json: { description: 'City Not Found', status: 404 }, status: 404
+      render_not_found
     end
   end
 
@@ -15,6 +15,6 @@ class Api::V1::ForecastsController < ApplicationController
     forecast_data = WeatherService.forecast_data(location)
     forecast = Forecast.new(forecast_data, location)
     forecast.add_data
-    ForecastSerializer.new(forecast).serializable_hash
+    forecast.city_weather
   end
 end
