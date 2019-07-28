@@ -1,3 +1,5 @@
+require 'api_key'
+
 class User < ApplicationRecord
   include ApiKey
   validates :email, uniqueness: true, presence: true
