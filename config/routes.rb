@@ -5,4 +5,5 @@ Rails.application.routes.draw do
       get 'backgrounds', to: 'backgrounds#index'
     end
   end
+  match '*path', :to => 'errors#routing', via: [:get, :post]
 end
