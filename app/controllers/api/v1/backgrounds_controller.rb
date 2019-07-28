@@ -10,7 +10,7 @@ class Api::V1::BackgroundsController < ApplicationController
 
   def render_images(images)
     if images.empty?
-      render json: { description: 'City Not Found', status: 404 }, status: 404
+      render_not_found
     else
       render json: { data: images }
     end
