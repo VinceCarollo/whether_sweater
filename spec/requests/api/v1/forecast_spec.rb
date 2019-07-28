@@ -84,7 +84,7 @@ RSpec.describe "Forecast API" do
       expect(extended_forecast[:daily].first).to have_key(:week_day)
       expect(extended_forecast[:daily].first).to have_key(:summary)
       expect(extended_forecast[:daily].first).to have_key(:icon)
-      expect(extended_forecast[:daily].first).to have_key(:humidity)
+      expect(extended_forecast[:daily].first).to have_key(:precip)
       expect(extended_forecast[:daily].first).to have_key(:high)
       expect(extended_forecast[:daily].first).to have_key(:low)
     end
