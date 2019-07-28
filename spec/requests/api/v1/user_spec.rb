@@ -47,4 +47,38 @@ RSpec.describe 'Users API' do
     expect(result[:errors].first).to eq('Email has already been taken')
   end
 
+  it "can give errors if fields are empty" do
+    user = {
+      "email": "",
+      "password": "password",
+      "password_confirmation": "password"
+    }
+
+    post '/api/v1/users', params: user.to_json, headers: {'Content-Type': 'application/json', 'Accept': 'application/json'}
+
+    result = JSON.parse(response.body, symbolize_names: true)
+
+    expect(status).to eq(409)
+
+    expect(result[:status]).to eq(409)
+    expect(result[:errors].first).to eq("Email can't be blank")
+  end
+
+  it "can give errors if passwords do not match" do
+    user = {
+      "email": "whatever@example.com",
+      "password": "password",
+      "password_confirmation": "not_password"
+    }
+
+    post '/api/v1/users', params: user.to_json, headers: {'Content-Type': 'application/json', 'Accept': 'application/json'}
+
+    result = JSON.parse(response.body, symbolize_names: true)
+
+    expect(status).to eq(409)
+
+    expect(result[:status]).to eq(409)
+    expect(result[:errors].first).to eq("Password confirmation doesn't match Password")
+  end
+
 end
