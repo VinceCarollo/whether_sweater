@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   include ApiKey
-  validates_presence_of :email, :api_key, :password
+  validates :email, uniqueness: true, presence: true
+  validates_presence_of :api_key, :password
   has_secure_password
 
   before_validation :assign_key

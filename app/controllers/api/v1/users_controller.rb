@@ -5,18 +5,18 @@ class Api::V1::UsersController < ApplicationController
     response = {}
     user = User.new(user_params)
     if user.save
-      response = {
+      render json: {
         status: 201,
         body: {
           api_key: user.api_key
         }
       }
     else
-      response = {
-        errors: user.errors
-      }
+      render json: {
+        status: 409,
+        errors: user.errors.full_messages
+      }, status: 409
     end
-    render json: response
   end
 
   private

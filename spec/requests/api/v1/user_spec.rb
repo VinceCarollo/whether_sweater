@@ -22,4 +22,29 @@ RSpec.describe 'Users API' do
     expect(user_status[:body]).to have_key(:api_key)
   end
 
+  it "can give errors if email is taken" do
+    user = {
+      "email": "whatever@example.com",
+      "password": "password",
+      "password_confirmation": "password"
+    }
+
+    post '/api/v1/users', params: user.to_json, headers: {'Content-Type': 'application/json', 'Accept': 'application/json'}
+
+    user = {
+      "email": "whatever@example.com",
+      "password": "password",
+      "password_confirmation": "password"
+    }
+
+    post '/api/v1/users', params: user.to_json, headers: {'Content-Type': 'application/json', 'Accept': 'application/json'}
+
+    result = JSON.parse(response.body, symbolize_names: true)
+
+    expect(status).to eq(409)
+
+    expect(result[:status]).to eq(409)
+    expect(result[:errors].first).to eq('Email has already been taken')
+  end
+
 end
