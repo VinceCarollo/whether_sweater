@@ -9,7 +9,7 @@ RSpec.describe 'Users API' do
       "password_confirmation": "password"
     }
 
-    post '/api/v1/users', params: user.to_json
+    post '/api/v1/users', params: user.to_json, headers: {'Content-Type': 'application/json', 'Accept': 'application/json'}
 
     expect(response).to be_successful
 
