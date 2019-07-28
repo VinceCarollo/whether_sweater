@@ -1,7 +1,7 @@
 class ErrorsController < ApplicationController
   def routing
      error = {
-      status: "No Found",
+      status: "Not Found",
       message: "No route matches '#{request.method} #{request.path}'",
       code: "404"
       }
