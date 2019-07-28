@@ -7,6 +7,12 @@ class Forecast
     @id = 1
   end
 
+  def add_data
+    add_main_data
+    add_details
+    add_extended_forecast
+  end
+
   def add_main_data
     summary = @data[:currently][:summary]
     temperature = @data[:currently][:temperature].round
@@ -48,6 +54,33 @@ class Forecast
       humidity: humidity,
       visibility: visibility,
       uv_index: uv_index
+    }
+  end
+
+  def add_extended_forecast
+    hourly = Array.new
+    daily = Array.new
+    @data[:hourly][:data][0..7].each do |hour|
+      stats = {
+        time: Time.at(hour[:time]).strftime("%I:%M %p"),
+        temperature: hour[:temperature].round
+      }
+      hourly << stats
+    end
+    @data[:daily][:data][1..5].each do |day|
+      stats = {
+        week_day: Time.at(day[:time]).strftime("%A"),
+        summary: day[:summary],
+        icon: day[:icon],
+        humidity: (day[:humidity] * 100).round,
+        high: day[:temperatureHigh].round,
+        low: day[:temperatureLow].round
+      }
+      daily << stats
+    end
+    @city_weather[:extended_forecast] = {
+      hourly: hourly,
+      daily: daily
     }
   end
 end
