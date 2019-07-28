@@ -1,5 +1,10 @@
 class ErrorsController < ApplicationController
   def routing
-    render json: { error: "No route matches #{request.method} #{request.path}"}
+     error = {
+      status: "error",
+      message: "No route matches '#{request.method} #{request.path}'",
+      code: "400"
+      }
+    render json: error, status: 400
   end
 end
