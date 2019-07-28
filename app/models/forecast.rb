@@ -35,7 +35,7 @@ class Forecast
       today:      @data[:hourly][:summary],
       tonight:    @data[:hourly][:data][9][:summary],
       feels_like: @data[:currently][:apparentTemperature].round,
-      humidity:   (@data[:currently][:humidity] * 100).round,
+      humidity:  (@data[:currently][:humidity] * 100).round,
       visibility: @data[:currently][:visibility],
       uv_index:   @data[:currently][:uvIndex]
     }
