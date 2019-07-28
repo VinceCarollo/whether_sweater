@@ -4,7 +4,7 @@ class Api::V1::ForecastsController < ApplicationController
       location = params[:location]
       city_weather = city_weather(location)
       render json: city_weather
-    rescue
+    rescue NoMethodError
       render json: { description: 'City Not Found', status: 404 }, status: 404
     end
   end
