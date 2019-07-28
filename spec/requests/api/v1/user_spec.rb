@@ -9,7 +9,9 @@ RSpec.describe 'Users API' do
       "password_confirmation": "password"
     }
 
-    post '/api/v1/users', params: user.to_json, headers: {'Content-Type': 'application/json', 'Accept': 'application/json'}
+    headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
+
+    post '/api/v1/users', params: user.to_json, headers: headers
 
     expect(response).to be_successful
 
@@ -29,7 +31,9 @@ RSpec.describe 'Users API' do
       "password_confirmation": "password"
     }
 
-    post '/api/v1/users', params: user.to_json, headers: {'Content-Type': 'application/json', 'Accept': 'application/json'}
+    headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
+
+    post '/api/v1/users', params: user.to_json, headers: headers
 
     user = {
       "email": "whatever@example.com",
@@ -37,7 +41,9 @@ RSpec.describe 'Users API' do
       "password_confirmation": "password"
     }
 
-    post '/api/v1/users', params: user.to_json, headers: {'Content-Type': 'application/json', 'Accept': 'application/json'}
+    headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
+
+    post '/api/v1/users', params: user.to_json, headers: headers
 
     result = JSON.parse(response.body, symbolize_names: true)
 
@@ -54,7 +60,9 @@ RSpec.describe 'Users API' do
       "password_confirmation": "password"
     }
 
-    post '/api/v1/users', params: user.to_json, headers: {'Content-Type': 'application/json', 'Accept': 'application/json'}
+    headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
+
+    post '/api/v1/users', params: user.to_json, headers: headers
 
     result = JSON.parse(response.body, symbolize_names: true)
 
@@ -71,7 +79,9 @@ RSpec.describe 'Users API' do
       "password_confirmation": "not_password"
     }
 
-    post '/api/v1/users', params: user.to_json, headers: {'Content-Type': 'application/json', 'Accept': 'application/json'}
+    headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
+
+    post '/api/v1/users', params: user.to_json, headers: headers
 
     result = JSON.parse(response.body, symbolize_names: true)
 
