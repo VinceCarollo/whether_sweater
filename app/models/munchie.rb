@@ -22,6 +22,7 @@ class Munchie
       zip:            business[:location][:zip_code]
       }
     end
+    @restaurants = 'None open on arrival' if @restaurants.empty?
   end
 
 end
