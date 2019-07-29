@@ -7,5 +7,5 @@ Rails.application.routes.draw do
       resource :users, only: [:create]
     end
   end
-  # match '*path', :to => 'errors#routing', via: [:get, :post]
+  match '*path', :to => 'errors#routing', via: [:get, :post]
 end
