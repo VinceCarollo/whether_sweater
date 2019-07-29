@@ -3,8 +3,7 @@ class Api::V1::MunchiesController < ApplicationController
     begin
       travel_data = travel_time_service
       restaurant_data = restaurant_service(travel_data)
-      munchie = Munchie.new
-      munchie.add_data(travel_data, restaurant_data)
+      munchie = initiate_munchie(travel_data, restaurant_data)
       render json: { data: munchie }
     rescue NoMethodError
       render json: { status: 404, description: "Not Found"}, status: 404
@@ -12,6 +11,12 @@ class Api::V1::MunchiesController < ApplicationController
   end
 
   private
+
+  def initiate_munchie(travel_data, restaurant_data)
+    munchie = Munchie.new
+    munchie.add_data(travel_data, restaurant_data)
+    munchie
+  end
 
   def restaurant_service(travel_data)
     travel_time = travel_data[:routes].first[:legs].first[:duration][:value]
