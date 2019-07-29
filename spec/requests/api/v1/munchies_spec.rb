@@ -20,4 +20,17 @@ RSpec.describe 'Munchies API' do
     expect(travel_data[:restaurants].first).to have_key(:city)
     expect(travel_data[:restaurants].first).to have_key(:zip)
   end
+
+  it "gives 404 for bad input" do
+    headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
+
+    get '/api/v1/munchies?start=denver,co', headers: headers
+
+    expect(status).to eq(404)
+
+    error = JSON.parse(response.body, symbolize_names: true)
+
+    expect(error[:status]).to eq(404)
+    expect(error[:description]).to eq('Not Found')
+  end
 end

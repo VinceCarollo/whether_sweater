@@ -1,10 +1,14 @@
 class Api::V1::MunchiesController < ApplicationController
   def index
-    travel_data = travel_time_service
-    restaurant_data = restaurant_service(travel_data)
-    munchie = Munchie.new
-    munchie.add_data(travel_data, restaurant_data)
-    render json: { data: munchie }
+    begin
+      travel_data = travel_time_service
+      restaurant_data = restaurant_service(travel_data)
+      munchie = Munchie.new
+      munchie.add_data(travel_data, restaurant_data)
+      render json: { data: munchie }
+    rescue NoMethodError
+      render json: { status: 404, description: "Not Found"}, status: 404
+    end
   end
 
   private
