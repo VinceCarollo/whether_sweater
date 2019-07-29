@@ -13,8 +13,8 @@ class Api::V1::ForecastsController < ApplicationController
 
   def city_weather(location)
     forecast_data = WeatherService.forecast_data(location)
-    forecast = Forecast.new(forecast_data, location)
-    forecast.add_data
-    forecast.city_weather
+    forecast = Forecast.new
+    forecast.add_data(forecast_data, location)
+    forecast
   end
 end
