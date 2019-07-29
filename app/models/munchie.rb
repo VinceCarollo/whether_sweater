@@ -7,8 +7,14 @@ class Munchie
   end
 
   def add_restaurant_data(data)
-    @businesses = data[:businesses][0..2].map do |business|
-      binding.pry
+    @restaurants = data[:businesses][0..2].map do |business|
+      {
+      name: business[:name],
+      street_address: business[:location][:address1],
+      city: business[:location][:city],
+      zip: business[:location][:zip_code]
+      }
     end
   end
+  
 end

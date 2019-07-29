@@ -15,6 +15,7 @@ class Api::V1::MunchiesController < ApplicationController
     munchie = Munchie.new
     munchie.add_travel_data(travel_data)
     munchie.add_restaurant_data(restaurant_data)
+    render json: { data: munchie }
   end
 
   private
