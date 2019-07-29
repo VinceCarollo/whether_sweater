@@ -4,7 +4,7 @@ class Api::V1::BackgroundsController < ApplicationController
     if location
       city = location.split(',').first
       images_data = ImageService.backgrounds(city)
-      images = create_images(images_data)
+      images = serialize(images_data)
       render_images(images)
     else
       render_not_found
@@ -21,7 +21,7 @@ class Api::V1::BackgroundsController < ApplicationController
     end
   end
 
-  def create_images(images_data)
+  def serialize(images_data)
     images_data[:results][0..9].map do |image_data|
       {
         url: image_data[:urls][:full],
