@@ -1,12 +1,20 @@
 class Api::V1::MunchiesController < ApplicationController
   def index
     travel_data = travel_time_service
+    travel_time = travel_data[:routes].first[:legs].first[:duration][:value]
+    hours_traveled = Time.at(travel_time).utc.hour
+    minutes_traveled = Time.at(travel_time).utc.min
+    time_arrived = Time.now + hours_traveled.hours + minutes_traveled.minutes
     response = Faraday.get('https://api.yelp.com/v3/businesses/search') do |req|
-      req.headers['Authorization'] = 'Bearer mX5uLjmCuUsm-nG3bCKU2bmNFN_fca-qLTju6LRSXgCQmFqfBZDF3IROzkpv_r4ID5RcoCFrjE4CEC_TVJIEpMXrzYMLUJ8J-ipFm5EffcQTm_YH_Rlg2_fptRY_XXYx'
+      req.headers['Authorization'] = "Bearer #{ENV['YELP_API_KEY']}"
       req.params['location'] = params[:end]
       req.params['term'] = params[:food]
+      req.params['open_at'] = time_arrived.to_i
     end
-    binding.pry
+    restaurant_data = JSON.parse(response.body, symbolize_names: true)
+    munchie = Munchie.new
+    munchie.add_travel_data(travel_data)
+    munchie.add_restaurant_data(restaurant_data)
   end
 
   private
