@@ -8,11 +8,6 @@ RSpec.describe 'Munchies API' do
 
     expect(response).to be_successful
 
-    expected = {
-      end_city: 'pueblo, co'
-      travel_time:
-    }
-
     travel_data = JSON.parse(response.body, symbolize_names: true)[:data]
 
     expect(travel_data).to have_key(:end_city)
