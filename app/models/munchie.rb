@@ -1,5 +1,12 @@
 class Munchie
 
+  def add_data(travel_data, restaurant_data)
+    add_travel_data(travel_data)
+    add_restaurant_data(restaurant_data)
+  end
+
+  private
+
   def add_travel_data(data)
     @origin = data[:routes].first[:legs].first[:start_address]
     @destination = data[:routes].first[:legs].first[:end_address]
@@ -16,5 +23,5 @@ class Munchie
       }
     end
   end
-  
+
 end
