@@ -22,7 +22,7 @@ RSpec.describe "Road Trip API" do
 
     post '/api/v1/road_trip', params: request.to_json, headers: headers
 
-    forecast = JSON.parse(response.body, symbolize_names: true)
+    forecast = JSON.parse(response.body, symbolize_names: true)[:data][:attributes]
 
     expect(forecast).to have_key(:origin)
     expect(forecast).to have_key(:destination)
