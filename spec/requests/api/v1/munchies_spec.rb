@@ -8,11 +8,12 @@ RSpec.describe 'Munchies API' do
 
     expect(response).to be_successful
 
-    travel_data = JSON.parse(response.body, symbolize_names: true)[:data]
+    travel_data = JSON.parse(response.body, symbolize_names: true)[:data][:attributes]
 
     expect(travel_data).to have_key(:origin)
     expect(travel_data).to have_key(:destination)
     expect(travel_data).to have_key(:travel_time)
+
     expect(travel_data[:restaurants]).to be_a Array
     expect(travel_data[:restaurants].count).to eq(3)
     expect(travel_data[:restaurants].first).to have_key(:name)
@@ -28,7 +29,7 @@ RSpec.describe 'Munchies API' do
 
     expect(response).to be_successful
 
-    travel_data = JSON.parse(response.body, symbolize_names: true)[:data]
+    travel_data = JSON.parse(response.body, symbolize_names: true)[:data][:attributes]
 
     expect(travel_data).to have_key(:origin)
     expect(travel_data).to have_key(:destination)
