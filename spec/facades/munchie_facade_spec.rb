@@ -8,8 +8,9 @@ RSpec.describe MunchieFacade do
       food: 'chinese'
     }
 
-    munchie = MunchieFacade.munchie_data(params)[:data]
+    munchie = MunchieFacade.munchie_data(params)
 
-    expect(munchie).to be_a Munchie
+    expect(munchie).to have_key(:data)
+    expect(munchie[:data]).to be_a Munchie
   end
 end
