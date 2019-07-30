@@ -1,3 +1,5 @@
+require 'api_key'
+
 class UserFacade
 
   def self.user_created(key)

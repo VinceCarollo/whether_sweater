@@ -5,7 +5,7 @@ class Api::V1::UsersController < ApplicationController
     user = User.new(user_params)
     if user.save
       session[:user_id] = user.id
-      render json: UserFacade.user_created(params[:api_key])
+      render json: UserFacade.user_created(user.api_key)
     else
       render json: UserFacade.user_not_created(user.errors.full_messages), status: 409
     end
