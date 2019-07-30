@@ -27,10 +27,12 @@ RSpec.describe "Background API" do
     expect(backgrounds[:data].first).to have_key(:url)
   end
 
-  it "returns 404 json with invalid input" do
+  it "determines no search results" do
 
     get '/api/v1/backgrounds?location=invlid_input'
 
-    expect(status).to eq(404)
+    error = JSON.parse(response.body, symbolize_names: true)
+
+    expect(error[:data]).to eq('No Images Found')
   end
 end

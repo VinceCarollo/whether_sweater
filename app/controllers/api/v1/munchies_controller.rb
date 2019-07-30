@@ -3,7 +3,7 @@ class Api::V1::MunchiesController < ApplicationController
     begin
       render json: MunchieFacade.munchie_data(params)
     rescue NoMethodError
-      render json: { status: 404, description: "Not Found"}, status: 404
+      render_not_found
     end
   end
 end
