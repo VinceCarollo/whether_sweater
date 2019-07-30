@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://maps.googleapis.com/maps/api/geocode/json?address=invalid&key=AIzaSyAEsG7jjjywIJppUceDP1BIEjgHwKPpr1Q
+    uri: https://maps.googleapis.com/maps/api/geocode/json?address=invalid&key=<GOOGLE_API_KEY>
     body:
       encoding: US-ASCII
       string: ''
@@ -21,9 +21,9 @@ http_interactions:
       Content-Type:
       - application/json; charset=UTF-8
       Date:
-      - Tue, 30 Jul 2019 01:44:34 GMT
+      - Tue, 30 Jul 2019 02:22:59 GMT
       Expires:
-      - Tue, 30 Jul 2019 01:46:34 GMT
+      - Tue, 30 Jul 2019 02:24:59 GMT
       Cache-Control:
       - public, max-age=120
       Vary:
@@ -39,7 +39,7 @@ http_interactions:
       X-Frame-Options:
       - SAMEORIGIN
       Server-Timing:
-      - gfet4t7; dur=325
+      - gfet4t7; dur=318
       Alt-Svc:
       - quic=":443"; ma=2592000; v="46,43,39"
     body:
@@ -50,5 +50,5 @@ http_interactions:
            "status" : "ZERO_RESULTS"
         }
     http_version: 
-  recorded_at: Tue, 30 Jul 2019 01:44:33 GMT
+  recorded_at: Tue, 30 Jul 2019 02:22:57 GMT
 recorded_with: VCR 5.0.0
