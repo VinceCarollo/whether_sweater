@@ -1,20 +1,9 @@
 class Api::V1::ForecastsController < ApplicationController
   def index
     begin
-      location = params[:location]
-      city_weather = city_weather(location)
-      render json: { data: city_weather }
+      render json: ForecastFacade.forecast_data(params)
     rescue NoMethodError
       render_not_found
     end
-  end
-
-  private
-
-  def city_weather(location)
-    forecast_data = WeatherService.forecast_data(location)
-    forecast = Forecast.new
-    forecast.add_data(forecast_data, location)
-    forecast
   end
 end
