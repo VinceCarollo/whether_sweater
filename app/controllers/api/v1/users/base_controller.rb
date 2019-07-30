@@ -1,4 +1,5 @@
 class Api::V1::Users::BaseController < ApplicationController
+  protect_from_forgery with: :null_session
   before_action :require_user
 
   def require_user
