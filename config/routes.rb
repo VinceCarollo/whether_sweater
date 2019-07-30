@@ -5,7 +5,8 @@ Rails.application.routes.draw do
       get 'backgrounds', to: 'backgrounds#index'
       get 'munchies', to: 'munchies#index'
       resource :users, only: [:create]
+      post 'sessions', to: 'sessions#create'
     end
   end
-  match '*path', :to => 'errors#routing', via: [:get, :post]
+  # match '*path', :to => 'errors#routing', via: [:get, :post]
 end
