@@ -1,4 +1,4 @@
-class MunchiesFacade
+class MunchieFacade
   def self.munchie_data(params)
     @params = params
     travel_data = travel_time_service
