@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       get 'munchies', to: 'munchies#index'
       resource :users, only: [:create]
       post 'sessions', to: 'sessions#create'
+      post 'road_trip', to: 'users/road_trips#index'
     end
   end
   # match '*path', :to => 'errors#routing', via: [:get, :post]
