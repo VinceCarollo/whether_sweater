@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ImageService do
-  it "can get backgrounds by city" do
+  it "can get backgrounds by city", :vcr do
     city = 'kansas city,mo'
 
     images_data = ImageService.backgrounds(city)
