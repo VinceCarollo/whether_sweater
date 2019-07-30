@@ -6,7 +6,6 @@ RSpec.describe ForecastFacade do
 
     forecast = ForecastFacade.forecast(params)
 
-    expect(forecast).to have_key(:data)
-    expect(forecast[:data]).to be_a Forecast
+    expect(forecast).to be_a ForecastSerializer
   end
 end

@@ -7,8 +7,7 @@ RSpec.describe "Forecast API" do
       get '/api/v1/forecast?location=denver,co'
 
       expect(response).to be_successful
-
-      main = JSON.parse(response.body, symbolize_names: true)[:data][:main]
+      main = JSON.parse(response.body, symbolize_names: true)[:data][:attributes][:main]
 
       expect(main).to have_key(:location)
       expect(main[:location]).to eq('denver, co')
@@ -27,7 +26,7 @@ RSpec.describe "Forecast API" do
 
       expect(response).to be_successful
 
-      main = JSON.parse(response.body, symbolize_names: true)[:data][:main]
+      main = JSON.parse(response.body, symbolize_names: true)[:data][:attributes][:main]
 
       expect(main).to have_key(:location)
       expect(main[:location]).to eq('kansas city, mo')
@@ -54,7 +53,7 @@ RSpec.describe "Forecast API" do
 
       expect(response).to be_successful
 
-      details = JSON.parse(response.body, symbolize_names: true)[:data][:details]
+      details = JSON.parse(response.body, symbolize_names: true)[:data][:attributes][:details]
 
       expect(details).to have_key(:summary)
       expect(details).to have_key(:icon)
@@ -73,7 +72,7 @@ RSpec.describe "Forecast API" do
 
       expect(response).to be_successful
 
-      extended_forecast = JSON.parse(response.body, symbolize_names: true)[:data][:ext_forecast]
+      extended_forecast = JSON.parse(response.body, symbolize_names: true)[:data][:attributes][:ext_forecast]
 
       expect(extended_forecast[:hourly].length).to eq(8)
       expect(extended_forecast[:daily].length).to eq(5)
