@@ -28,4 +28,20 @@ RSpec.describe "Road Trip API" do
     expect(forecast).to have_key(:destination)
     expect(forecast).to have_key(:travel_time)
   end
+
+  it "requires correct api_key" do
+    request = {
+      "origin": "Denver,CO",
+      "destination": "Pueblo,CO",
+      "api_key": 'invalid_key'
+    }
+
+    post '/api/v1/road_trip', params: request.to_json, headers: headers
+
+    error = JSON.parse(response.body, symbolize_names: true)
+
+    expect(status).to eq(401)
+    expect(error[:description]).to eq("Not Authorized")
+    expect(error[:status]).to eq(401)
+  end
 end
