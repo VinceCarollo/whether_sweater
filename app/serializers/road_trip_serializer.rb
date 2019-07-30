@@ -1,6 +1,7 @@
 class RoadTripSerializer
   include FastJsonapi::ObjectSerializer
   attributes :origin, :destination, :travel_time, :forecast
+  set_id { 1 }
 
   def origin
     object.origin

@@ -4,7 +4,6 @@ class RoadTrip
     @travel_data = travel_data
     @weather_data = weather_data
     @hours_traveled = Time.at(@travel_data[:routes].first[:legs].first[:duration][:value]).utc.hour + 1
-    @id = 1
   end
 
   def origin
