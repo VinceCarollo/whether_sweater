@@ -25,4 +25,8 @@ class RoadTrip
       temperature: @weather_data[:hourly][:data][@hours_traveled][:temperature].round
     }
   end
+
+  def cache_key
+    self.class.to_s.downcase + '/1'
+  end
 end
