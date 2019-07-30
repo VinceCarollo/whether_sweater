@@ -117,4 +117,34 @@ RSpec.describe 'Users API' do
     expect(comfirmation[:body][:api_key]).to eq(api_key)
   end
 
+  it "can't login with incorrect password" do
+    user = {
+      "email": "whatever@example.com",
+      "password": "password",
+      "password_confirmation": "password"
+    }
+
+    headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
+
+    post '/api/v1/users', params: user.to_json, headers: headers
+
+    api_key = JSON.parse(response.body, symbolize_names: true)[:body][:api_key]
+
+    login = {
+      "email": "whatever@example.com",
+      "password": "not_password"
+    }
+
+    post '/api/v1/sessions', params: login.to_json, headers: headers
+
+    error = JSON.parse(response.body, symbolize_names: true)
+
+    expected = {
+      status: 404,
+      description: 'Invalid email/password combination'
+    }
+
+    expect(error).to eq(expected)
+  end
+
 end
