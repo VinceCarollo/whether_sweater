@@ -4,7 +4,7 @@ RSpec.describe 'Munchies API' do
   it "can get time to travel and restaurants upon arrival" do
     headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
 
-    get '/api/v1/munchies?start=denver,co&end=pueblo,co&food=chinese', headers: headers
+    get '/api/v1/munchies?start=denver,co&end=new york,ny&food=chinese', headers: headers
 
     expect(response).to be_successful
 
@@ -41,7 +41,7 @@ RSpec.describe 'Munchies API' do
     expect(travel_data[:restaurants].first).to have_key(:zip)
   end
 
-  it "gives 404 for bad input" do
+  it "gives 404 for bad input", :vcr do
     headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
 
     get '/api/v1/munchies?start=denver,co', headers: headers

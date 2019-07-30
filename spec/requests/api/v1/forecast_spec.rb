@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "Forecast API" do
   context 'main section' do
 
-    it "returns main city info from given city" do
+    it "returns main city info from given city", :vcr do
       get '/api/v1/forecast?location=denver,co'
 
       expect(response).to be_successful
@@ -22,7 +22,7 @@ RSpec.describe "Forecast API" do
       expect(main).to have_key(:icon)
     end
 
-    it "returns main city info from different given city" do
+    it "returns main city info from different given city", :vcr do
       get '/api/v1/forecast?location=kansas city,mo'
 
       expect(response).to be_successful
@@ -41,7 +41,7 @@ RSpec.describe "Forecast API" do
       expect(main).to have_key(:icon)
     end
 
-    it "returns 404 if invalid city" do
+    it "returns 404 if invalid city", :vcr do
       get '/api/v1/forecast?location=invalid'
 
       expect(status).to eq(404)
@@ -49,7 +49,7 @@ RSpec.describe "Forecast API" do
   end
 
   context 'details section' do
-    it "returns details from given city" do
+    it "returns details from given city", :vcr do
       get '/api/v1/forecast?location=denver,co'
 
       expect(response).to be_successful
@@ -68,7 +68,7 @@ RSpec.describe "Forecast API" do
   end
 
   context 'extended forecast section' do
-    it "returns extended forecast from given city" do
+    it "returns extended forecast from given city", :vcr do
       get '/api/v1/forecast?location=denver,co'
 
       expect(response).to be_successful

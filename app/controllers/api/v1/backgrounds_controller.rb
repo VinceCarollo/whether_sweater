@@ -1,32 +1,9 @@
 class Api::V1::BackgroundsController < ApplicationController
   def index
-    location = params[:location]
-    if location
-      city = location.split(',').first
-      images_data = ImageService.backgrounds(city)
-      images = serialize(images_data)
-      render_images(images)
-    else
+    begin
+      render json: BackgroundFacade.background_data(params)
+    rescue NoMethodError
       render_not_found
-    end
-  end
-
-  private
-
-  def render_images(images)
-    if images.empty?
-      render_not_found
-    else
-      render json: { data: images }
-    end
-  end
-
-  def serialize(images_data)
-    images_data[:results][0..9].map do |image_data|
-      {
-        url: image_data[:urls][:full],
-        alt_description: image_data[:alt_description]
-      }
     end
   end
 end

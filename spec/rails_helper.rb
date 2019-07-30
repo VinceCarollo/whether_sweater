@@ -68,3 +68,14 @@ Shoulda::Matchers.configure do |config|
     with.library :rails
   end
 end
+
+VCR.configure do |config|
+  config.cassette_library_dir = "spec/cassettes"
+  config.hook_into :webmock
+  config.configure_rspec_metadata!
+  config.allow_http_connections_when_no_cassette = true
+  config.filter_sensitive_data('<GOOGLE_API_KEY>') { ENV['GOOGLE_API_KEY'] }
+  config.filter_sensitive_data('<DARKSKY_API_KEY>') { ENV['DARKSKY_API_KEY'] }
+  config.filter_sensitive_data('<UNSPLASH_API_KEY>') { ENV['UNSPLASH_API_KEY'] }
+  config.filter_sensitive_data('<GOOGLE_API_KEY>') { ENV['YELP_API_KEY'] }
+end

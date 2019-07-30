@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe WeatherService do
-  it "can get forecast data from city input" do
+  it "can get forecast data from city input", :vcr do
     city = 'kansas city,mo'
 
     forecast_data = WeatherService.forecast_data(city)
