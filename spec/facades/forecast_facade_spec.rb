@@ -4,7 +4,7 @@ RSpec.describe ForecastFacade do
   it "can return forecast data", :vcr do
     params = { location: 'kansas city,mo' }
 
-    forecast = ForecastFacade.forecast_data(params)
+    forecast = ForecastFacade.forecast(params)
 
     expect(forecast).to have_key(:data)
     expect(forecast[:data]).to be_a Forecast
