@@ -5,7 +5,7 @@ RSpec.describe BackgroundFacade do
   it "can give background data", :vcr do
     params = {location: 'kansas city,mo'}
 
-    backgrounds = BackgroundFacade.background_data(params)[:data]
+    backgrounds = BackgroundFacade.backgrounds(params)[:data]
 
     expect(backgrounds.count).to eq(10)
     expect(backgrounds.first).to have_key(:url)
