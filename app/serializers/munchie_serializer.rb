@@ -1,6 +1,6 @@
-class RoadTripSerializer
+class MunchieSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :origin, :destination, :travel_time, :forecast
+  attributes :origin, :destination, :travel_time, :restaurants
   set_id { 1 }
 
   def origin
@@ -15,7 +15,7 @@ class RoadTripSerializer
     object.travel_time
   end
 
-  def forecast
-    object.forecast
+  def restaurants
+    object.restaurants
   end
 end

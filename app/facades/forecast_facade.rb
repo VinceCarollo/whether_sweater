@@ -1,16 +1,16 @@
 class ForecastFacade
-  def self.forecast_data(params)
-    location = params[:location]
-    city_weather = city_weather(location)
-    { data: city_weather }
+  def initialize(params)
+    @params = params
   end
 
-  private
+  def self.forecast(params)
+    new(params).forecast_data
+  end
 
-  def self.city_weather(location)
+  def forecast_data
+    location = @params[:location]
     forecast_data = WeatherService.forecast_data(location)
-    forecast = Forecast.new
-    forecast.add_data(forecast_data, location)
-    forecast
+    forecast = Forecast.new(forecast_data, location)
+    ForecastSerializer.new(forecast)
   end
 end

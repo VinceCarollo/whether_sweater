@@ -1,20 +1,24 @@
 class Munchie
 
-  def add_data(travel_data, restaurant_data)
-    add_travel_data(travel_data)
-    add_restaurant_data(restaurant_data)
+  def initialize(travel_data, restaurant_data)
+    @travel_data = travel_data
+    @restaurant_data = restaurant_data
   end
 
-  private
-
-  def add_travel_data(data)
-    @origin =      data[:routes].first[:legs].first[:start_address]
-    @destination = data[:routes].first[:legs].first[:end_address]
-    @travel_time = data[:routes].first[:legs].first[:duration][:text]
+  def origin
+    @travel_data[:routes].first[:legs].first[:start_address]
   end
 
-  def add_restaurant_data(data)
-    @restaurants = data[:businesses][0..2].map do |business|
+  def destination
+    @travel_data[:routes].first[:legs].first[:end_address]
+  end
+
+  def travel_time
+    @travel_data[:routes].first[:legs].first[:duration][:text]
+  end
+
+  def restaurants
+    @restaurant_data[:businesses][0..2].map do |business|
       {
       name:           business[:name],
       street_address: business[:location][:address1],
@@ -22,7 +26,6 @@ class Munchie
       zip:            business[:location][:zip_code]
       }
     end
-    @restaurants = 'None open on arrival' if @restaurants.empty?
   end
 
 end
