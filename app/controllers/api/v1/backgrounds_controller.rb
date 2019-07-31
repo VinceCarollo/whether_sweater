@@ -1,7 +1,7 @@
 class Api::V1::BackgroundsController < ApplicationController
   def index
     begin
-      render json: BackgroundFacade.background_data(params)
+      render json: BackgroundFacade.backgrounds(params)
     rescue NoMethodError
       render_not_found
     end
