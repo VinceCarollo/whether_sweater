@@ -9,8 +9,7 @@ class BackgroundFacade
   end
 
   def background_data
-    city = @params[:location].split(',').first
-    images_data = ImageService.backgrounds(city)
+    images_data = image_search
     images = serialize(images_data)
     if images.empty?
       { data: 'No Images Found' }
@@ -20,6 +19,13 @@ class BackgroundFacade
   end
 
   private
+
+  def image_search
+    city = @params[:location].split(',').first
+    Rails.cache.fetch(city, expires_in: 12.hours) do
+      ImageService.backgrounds(city)
+    end
+  end
 
   def serialize(images_data)
     images_data[:results][0..9].map do |image_data|
