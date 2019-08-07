@@ -4,7 +4,7 @@ This is an api that can create and log in users. It can give the hourly and exte
 
 ### Configuration
 
-Using [figaro](https://github.com/laserlemon/figaro) gem to hide keys
+Uses [figaro](https://github.com/laserlemon/figaro) gem to hide keys
 ##### Keys needed:
 - Google as 'GOOGLE_API_KEY'
 - Darksky as 'DARKSKY_API_KEY'
