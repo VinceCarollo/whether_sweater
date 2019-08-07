@@ -2,6 +2,15 @@
 
 This is an api that can create and log in users. It can give the hourly and extended forecast for an area, give backgrounds for city forecast pages, give time traveled and open restaurants for end and start points given, and can give road trip information with required key and start and endpoint.
 
+### Configuration
+
+Using [figaro](https://github.com/laserlemon/figaro) gem to hide keys
+##### Keys needed:
+- Google as 'GOOGLE_API_KEY'
+- Darksky as 'DARKSKY_API_KEY'
+- Unsplash as 'UNSPLASH_API_KEY'
+- Yelp as 'YELP_API_KEY'
+
 ### Installing
 
 Clone Repo
