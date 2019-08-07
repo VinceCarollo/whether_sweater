@@ -9,5 +9,6 @@ Rails.application.routes.draw do
       post 'road_trip', to: 'users/road_trips#index'
     end
   end
-  # match '*path', :to => 'errors#routing', via: [:get, :post]
+  root 'welcome#show'
+  match '*path', :to => 'errors#routing', via: [:get, :post]
 end
