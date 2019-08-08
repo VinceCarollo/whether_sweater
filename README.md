@@ -58,25 +58,25 @@ uses:
 * **Vince Carollo** - *Solo* - [VinceCarollo](https://github.com/VinceCarollo)
 
 ## Endpoints
-#### /api/v1/forecast?location=golden,co
+#### GET /api/v1/forecast?location=golden,co
 
 gives main forecast, details, and extended hourly and daily forecasts
 
 ![forecast Example](./app/assets/images/forecast_example.png)
 
-#### /api/v1/backgrounds?location=golden,co
+#### GET /api/v1/backgrounds?location=golden,co
 
 gives background images of city for forecast page
 
 ![forecast Example](./app/assets/images/background_example.png)
 
-#### /api/v1/munchies?start=denver,co&end=new%20york,ny&food=chinese
+#### GET /api/v1/munchies?start=denver,co&end=new%20york,ny&food=chinese
 
 gives 3 restaurants that are open upon arrival of end address that adhere to food type input
 
 ![muncie example](./app/assets/images/munchie_example.png)
 
-#### /api/v1/users
+#### POST /api/v1/users
 
 allows the creation of users and return api key assigned
 
@@ -99,7 +99,7 @@ return:
 }
 ```
 
-#### /api/v1/sessions
+#### POST /api/v1/sessions
 
 allows user to see api key assigned and login
 
@@ -121,7 +121,7 @@ return:
 }
 ```
 
-#### /api/v1/road_trip
+#### POST /api/v1/road_trip
 
 gives time traveled to destination and forecast upon arrival (must use valid api key)
 
